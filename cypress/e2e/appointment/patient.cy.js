@@ -11,10 +11,9 @@ describe('patientPage', () =>{
             phone: '5454545454545454',
             email: 'andrey@gmail.com',
             symptoms: 'without symptoms',
-            bloodGroup: 'A-'
+            bloodGroup: 'A-',
+            value: 'Male'
         })
-
-        patientPage.patientsForm.gender.click('Male')
         patientPage.patientsForm.dobData.click()
         patientPage.patientsForm.todayButton.click()
         patientPage.patientsForm.saveButton.click()
