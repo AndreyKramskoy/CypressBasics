@@ -1,18 +1,23 @@
+import PatientPage from "../../support/PatientPage"
+
 describe('patientPage', () =>{
     beforeEach(()=>{
-        cy.visit('/')
-        cy.get('.patients > .text').click()
-        cy.get('.patient-operations > .e-control').click()
-        cy.get('#textbox_0').type('Andrey Kramskoy')
-        cy.get('[for="doctorCheckMale"]').click()
-        cy.get('#BloodGroup > .e-float-input > .e-input-group-icon').click()
-        cy.get('[data-value="A-"]').click()
-        cy.get('#DOB > .e-float-input > .e-input-group-icon').click()
-        cy.get('.e-footer-container > .e-btn').click()
-        cy.get('#PatientMobile').type('5454545454545454')
-        cy.get('#textbox_43').type('andrey@gmail.com')
-        cy.get('#textbox_44').type('without symptoms')
-        cy.get('#dialog_1627125836_0 > .e-footer-content > .button-container > .e-primary').click()
+        const patientPage = new PatientPage()
+        
+        patientPage.open()
+        patientPage.addPatient.click()
+        patientPage.patientsForm.fill({
+            name:'Andrey Kramskoy',
+            phone: '5454545454545454',
+            email: 'andrey@gmail.com',
+            symptoms: 'without symptoms',
+            bloodGroup: 'A-'
+        })
+
+        patientPage.patientsForm.gender.click('Male')
+        patientPage.patientsForm.dobData.click()
+        patientPage.patientsForm.todayButton.click()
+        patientPage.patientsForm.saveButton.click()
     })
 
     it('Check the creation of a new patient', () => {      
